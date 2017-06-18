@@ -1,0 +1,7 @@
+__pycache__
+.idea
+.idea/*
+puckmath/db_utils/conf.json
+puckmath/db_utils/players_to_link.txt
+puckmath/db_utils/test.html
+.puckmath.yaml

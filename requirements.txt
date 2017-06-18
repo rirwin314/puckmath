@@ -1,0 +1,8 @@
+pyyaml
+sqlalchemy
+numpy
+pandas
+tqdm
+click
+requests
+eventlet
