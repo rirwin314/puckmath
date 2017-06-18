@@ -2,6 +2,11 @@ from puckmath.core.tools.NHLParser.utils import html_rep
 
 
 def downloader(_args):
+    """
+    Download HTML files.
+    :param _args:
+    :return:
+    """
     import argparse
 
     arg = argparse.ArgumentParser()

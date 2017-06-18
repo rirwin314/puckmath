@@ -1,11 +1,17 @@
-import os
+import json
+
 import puckmath.core.builder.build
 
-
 if __name__ == '__main__':
-    puckmath_url = os.environ['PUCKMATH_URL']
-    puckmath_usr = os.environ['PUCKMATH_USR']
-    puckmath_pwd = os.environ['PUCKMATH_PWD']
-    puckmath.core.builder.build.create_tables('{}:{}@{}'.format(puckmath_usr, puckmath_pwd, puckmath_url))
-    session, engine = puckmath.core.builder.build.make_session('{}:{}@{}/puckmath'.format(puckmath_usr, puckmath_pwd, puckmath_url))
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+
+    db_route = '{}:{}@{}:{}/{}'.format(config['db_conf']['usr'],
+                                       config['db_conf']['pwd'],
+                                       config['db_conf']['addr'],
+                                       config['db_conf']['port'],
+                                       config['db_conf']['nm'])
+
+    puckmath.core.builder.build.create_tables(db_route)
+    session, engine = puckmath.core.builder.build.make_session(db_route)
     puckmath.core.builder.build.build_teams(session)

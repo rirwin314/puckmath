@@ -20,7 +20,6 @@ if __name__ == '__main__':
     with open(args.config, 'r') as f:
         config = json.load(f)
 
-    # session, engine = build.make_session('/Users/rlirwin/Desktop/PuckMath/NHL_Database/puckmath.db')
     db_str = '{}:{}@{}:{}/{}'.format(config['db_conf']['usr'],
                                      config['db_conf']['pwd'],
                                      config['db_conf']['addr'],

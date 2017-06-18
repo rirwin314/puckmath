@@ -11,18 +11,18 @@ from tqdm import tqdm
 from puckmath.core.schema import *
 
 
-def parse_player_info(session, raw_data_dir='/Users/rlirwin/Desktop/PuckMath/NHL_raw_data'):
+def parse_player_info(session, data_path):
     """
-
+    Downloads and parses player info from hockey-reference.com
     :param session:
-    :param raw_data_dir:
+    :param data_path:
     :return:
     """
     dat_to_add = []
     for c in ascii_lowercase:
         logging.debug('Reading player names "{0}"'.format(c.upper()))
 
-        player_id_fnm = os.path.join(raw_data_dir, 'hr_players_{0}.html'.format(c))
+        player_id_fnm = os.path.join(data_path, 'hr_players_{0}.html'.format(c))
 
         if not os.path.isfile(player_id_fnm):
             link = 'http://www.hockey-reference.com/players/{0}'.format(c)
