@@ -1,6 +1,6 @@
 # puckmath
 
-Puckmath is a toolset used to scrape NHL game reports and deposit the data in a PostgreSQL database using SQLAlchemy. This includes scraping NHL Play-by-Play reports from 2008, which gives analysts access to the most detailed, official NHL data available.
+`puckmath` is a toolset used to scrape NHL game reports and deposit the data in a PostgreSQL database using SQLAlchemy. This includes scraping NHL Play-by-Play reports from 2008, which gives analysts access to the most detailed, official NHL data available.
 
 The workhorses of this repo are found in the following directories:
 1. The ORM: [`puckmath/puckmath/core/schema/*.py`](https://github.com/rirwin314/puckmath/tree/master/puckmath/core/schema)
@@ -17,7 +17,7 @@ Please contact the developer if you're interested in using this toolset (`rirwin
 
 ## Built With
 
-* [SQLAlchmey](https://www.sqlalchemy.org/) - Python ORM
+* [SQLAlchemy](https://www.sqlalchemy.org/) - Python ORM
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) - HTML parsing lib
 
 ## Authors
