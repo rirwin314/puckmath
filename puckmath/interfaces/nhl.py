@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from puckmath.interfaces.utils import download_html
 
 
-DATA_DIRECTORY = os.environ.get_key('PUCKMATH_DATA_DIRECTORY', '/tmp/data')
+DATA_DIRECTORY = os.environ.get('PUCKMATH_DATA_DIRECTORY', '/tmp/data')
 
 team_map = {
     'ANA': 'ANAHEIM DUCKS',

@@ -13,7 +13,7 @@ def cli():
     pass
 
 
-@click.command()
+@cli.command()
 def configure():
     print('test')
     if os.path.exists(ConfigFile.FILE_PATH):
@@ -41,7 +41,7 @@ def configure():
     print('Successfully wrote puckdb configuration.')
 
 
-@click.command()
+@cli.command()
 @click.option('--start-year', type=click.INT)
 @click.option('--end-year', type=click.INT)
 @click.option('--ignore-preseason', is_flag=True)
@@ -52,12 +52,12 @@ def fetchhtml(start_year, end_year, ignore_preseason, ignore_regular_season, ign
     fetch_all_html_reports(start_year, end_year, ignore_preseason, ignore_regular_season, ignore_playoffs, dest_dir)
 
 
-@click.command()
+@cli.command()
 def link():
     player_linker()
 
 
-@click.command()
+@cli.command()
 @click.option('--start-year', type=click.INT)
 @click.option('--end-year', type=click.INT)
 @click.option('--start-game', type=click.INT)
@@ -70,15 +70,10 @@ def populate(start_year, end_year, start_game, end_game, ignore_preseason, ignor
     populate_database(start_year, end_year, start_game, end_game, ignore_preseason, ignore_regular_season, ignore_playoffs, src_path)
 
 
-@click.command()
+@cli.command()
 def createdb():
     create_db()
 
 
 if __name__ == '__main__':
-    cli.add_command(configure)
-    cli.add_command(populate)
-    cli.add_command(fetchhtml)
-    cli.add_command(link)
-    cli.add_command(createdb)
     cli()

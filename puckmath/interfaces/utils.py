@@ -1,3 +1,4 @@
+import os
 import urllib.request
 import logging
 
@@ -24,6 +25,8 @@ def download_html(url, dest_file):
     )
     response = urllib.request.urlopen(req)
     html = response.read()
+
+    os.makedirs(os.path.dirname(dest_file), exist_ok=True)
 
     logger().debug('Writing to {}'.format(dest_file))
     with open(dest_file, 'wb') as f:

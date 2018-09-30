@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm_notebook as tqdm
 from datetime import datetime
 from puckmath.interfaces.nhl import HtmlReports, reverse_team_map
-from puckmath.models.data_processing import parse_play_by_play_dataframe, process_one_game, get_master_df_dict
+from puckmath.models.markov.data_processing import parse_play_by_play_dataframe, process_one_game, get_master_df_dict
 
 
 def generate_markov_matrix_for_game(df_dict, home_team, away_team):

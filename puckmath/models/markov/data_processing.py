@@ -12,7 +12,7 @@ import json
 from bs4 import BeautifulSoup
 from tqdm import tqdm_notebook as tqdm
 from datetime import datetime
-from interfaces.nhl import HtmlReports, reverse_team_map
+from puckmath.interfaces.nhl import HtmlReports, reverse_team_map
 
 
 def time_str_to_seconds(s):

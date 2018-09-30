@@ -3,6 +3,8 @@ sqlalchemy
 numpy
 pandas
 tqdm
-click
+Click
 requests
 eventlet
+tqdm
+beautifulsoup4
