@@ -210,7 +210,9 @@ class HockeyRef(object):
     def _convert_toi_to_s(val):
         try:
             vals = [float(v) for v in val.split(':')]
-            if len(vals) == 2:
+            if len(vals) == 1:
+                return vals[0]
+            elif len(vals) == 2:
                 return vals[0] * 60 + vals[1]
             elif len(vals) == 3:
                 return vals[0] * 3600 + vals[1] * 60 + vals[2]
@@ -225,21 +227,15 @@ class HockeyRef(object):
             for col in dataframes[key].columns.values:
                 try:
                     dataframes[key] = dataframes[key][dataframes[key][col] != col]
-                    dataframes[key][col] = float(dataframes[key][col])
-                except TypeError as e:
-                    logger().warning('TypeError on (key, col): ({}, {})'.format(key, col))
-                    logger().warning(e)
-                    continue
-                except ValueError as e:
-                    logger().warning('ValueError on (key, col): ({}, {})'.format(key, col))
-                    logger().warning(e)
+                    dataframes[key][col] = dataframes[key][col].astype(float)
+                except (TypeError, ValueError):
                     continue
         return dataframes
 
     @staticmethod
     def load_player(id):
         url = 'https://www.hockey-reference.com/players/{0}.html'.format(id)
-        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'players', '{0}_{1}.html'.format(
+        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'players', 'player_{0}_{1}.html'.format(
             id, datetime.now().strftime('%y%m%d')))
 
         soup = HockeyRef._load_html_soup(url, file_path)
@@ -251,8 +247,8 @@ class HockeyRef(object):
     @staticmethod
     def load_player_advanced(id, strength):
         url = 'https://www.hockey-reference.com/players/{0}-advanced-{1}.html'.format(id, strength.lower())
-        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'players', '{0}_{1}.html'.format(
-            id, datetime.now().strftime('%y%m%d')))
+        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'players', 'advanced_{0}_{1}_{2}.html'.format(
+            id, strength, datetime.now().strftime('%y%m%d')))
 
         soup = HockeyRef._load_html_soup(url, file_path)
         info_data = HockeyRef._load_info(soup)
@@ -263,8 +259,8 @@ class HockeyRef(object):
     @staticmethod
     def load_game_logs(id, year):
         url = 'https://www.hockey-reference.com/players/{0}/gamelog/{1}'.format(id, year)
-        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'gamelog', '{0}_{1}.html'.format(
-            id, datetime.now().strftime('%y%m%d')))
+        file_path = os.path.join(DATA_DIRECTORY, 'hockeyref', 'gamelog', 'gamelog_{0}_{1}_{2}.html'.format(
+            id, year, datetime.now().strftime('%y%m%d')))
 
         soup = HockeyRef._load_html_soup(url, file_path)
         info_data = HockeyRef._load_info(soup)
